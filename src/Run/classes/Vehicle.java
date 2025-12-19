@@ -1,4 +1,4 @@
-package classes;
+package Run.classes;
 
 import java.util.Date;
 
@@ -12,6 +12,9 @@ public abstract class Vehicle implements Maintainable, Comparable<Vehicle> {
     private Date maintenanceDate;
 
     public Vehicle(int vehicleId, String model, String brand, int year, double dailyRate) {
+        if (dailyRate <= 0) {
+            throw new IllegalArgumentException("Daily rate must be greater than zero");
+        }
         this.vehicleId = vehicleId;
         this.model = model;
         this.brand = brand;
@@ -45,6 +48,15 @@ public abstract class Vehicle implements Maintainable, Comparable<Vehicle> {
 
     @Override
     public void scheduleMaintenance(Date date) {
+        if (date == null) {
+            throw new IllegalArgumentException("Maintenance date cannot be null");
+        }
+
+        Date now = new Date();
+        if (!date.after(now)) {
+            throw new IllegalArgumentException("Maintenance date must be in the future");
+        }
+
         this.maintenanceDate = date;
         this.isAvailable = false;
     }
