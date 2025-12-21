@@ -331,6 +331,16 @@ public class MainApp extends Application {
                 String model = modelField.getText();
                 int year = Integer.parseInt(yearField.getText());
                 double rate = Double.parseDouble(rateField.getText());
+
+                if(rate <= 0) {
+                    showAlert("Invalid Input", "please enter a positive non-zero daily rate");
+                    return;
+                }
+                if(year < 1500 || year > 2100){
+                    showAlert("Invalid Input", "please enter a valid year");
+                    return;
+                }
+
                 typeBox.getSelectionModel().clearSelection();
                 brandField.clear();
                 modelField.clear();
@@ -342,6 +352,10 @@ public class MainApp extends Application {
                 switch (type) {
                     case "Car" -> {
                         int doors = Integer.parseInt(doorsField.getText());
+                        if(doors <= 0) {
+                            showAlert("Invalid Input", "please enter a positive non-zero door numbers");
+
+                        }
                         String transmission = transmissionField.getText();
                         doorsField.clear();
                         transmissionField.clear();
@@ -354,6 +368,10 @@ public class MainApp extends Application {
                     }
                     case "Van" -> {
                         double cargo = Double.parseDouble(cargoField.getText());
+                        if(cargo <= 0) {
+                            showAlert("Invalid Input", "please enter a positive non-zero cargo volume");
+                            return;
+                        }
                         cargoField.clear();
                         v = new Van(id, model, brand, year, rate, cargo);
                     }
