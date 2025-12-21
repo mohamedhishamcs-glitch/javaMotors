@@ -1,4 +1,4 @@
-package Run.classes;
+package classes;
 
 public class Van extends Vehicle {
     private double cargoVolume;

@@ -1,4 +1,4 @@
-package Run.classes;
+package classes;
 
 public class Bike extends Vehicle {
     private String type;
